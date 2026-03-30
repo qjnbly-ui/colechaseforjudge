@@ -32,12 +32,6 @@ const requiredEnv = () => {
   return { apiKey, from, to };
 };
 
-const renderNewsletterHtml = ({ email, zip }) => `
-  <h1>New campaign signup</h1>
-  <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-  <p><strong>ZIP:</strong> ${escapeHtml(zip || "Not provided")}</p>
-`;
-
 const renderContactHtml = ({ name, email, phone, interest, message }) => `
   <h1>New campaign contact</h1>
   <p><strong>Name:</strong> ${escapeHtml(name)}</p>
@@ -49,22 +43,6 @@ const renderContactHtml = ({ name, email, phone, interest, message }) => `
 `;
 
 const buildEmailPayload = (data, to, from) => {
-  if (data.formType === "newsletter") {
-    if (!data.email) {
-      return { error: "Email is required." };
-    }
-
-    return {
-      payload: {
-        from,
-        to: [to],
-        subject: `Campaign signup: ${data.email}`,
-        replyTo: data.email,
-        html: renderNewsletterHtml(data)
-      }
-    };
-  }
-
   if (data.formType === "contact") {
     if (!data.name || !data.email) {
       return { error: "Name and email are required." };

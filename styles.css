@@ -19,6 +19,8 @@
   --radius-md: 18px;
   --radius-sm: 12px;
   --max-width: 1180px;
+  --section-space: 60px;
+  --section-gap: 24px;
 }
 
 html {
@@ -382,46 +384,10 @@ textarea {
   color: rgba(255, 255, 255, 0.84);
 }
 
-.signup-bar {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(110px, 0.7fr) auto;
-  margin-top: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: var(--shadow);
-}
-
-.signup-bar input,
-.signup-bar button {
-  min-height: 66px;
-  border: 0;
-}
-
-.signup-bar input {
-  padding: 0 18px;
-  color: var(--ink-900);
-  background: transparent;
-}
-
-.signup-bar input + input {
-  border-left: 1px solid rgba(21, 36, 51, 0.12);
-}
-
-.signup-bar button,
 .button {
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
-}
-
-.signup-bar button {
-  padding: 0 26px;
-  background: var(--gold-500);
-  color: var(--ink-900);
-  font-family: "Oswald", Impact, sans-serif;
-  font-size: 1.25rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .form-note {
@@ -449,7 +415,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: var(--section-gap);
 }
 
 .mobile-hero-cta {
@@ -470,7 +436,6 @@ textarea {
 }
 
 .button:hover,
-.signup-bar button:hover,
 .nav-links a:hover {
   transform: translateY(-1px);
 }
@@ -536,7 +501,7 @@ textarea {
 }
 
 .section {
-  padding: 82px 0;
+  padding: var(--section-space) 0;
 }
 
 .metrics {
@@ -573,7 +538,7 @@ textarea {
 
 .section-heading {
   max-width: 52rem;
-  margin-bottom: 30px;
+  margin-bottom: var(--section-gap);
 }
 
 .section-heading h2 {
@@ -598,7 +563,7 @@ textarea {
 }
 
 .endorsement-feature {
-  margin-bottom: 24px;
+  margin-bottom: var(--section-gap);
   padding: 34px;
   border-radius: var(--radius-lg);
   background:
@@ -744,7 +709,7 @@ textarea {
 }
 
 .why-me-promise {
-  margin-top: 22px;
+  margin-top: var(--section-gap);
 }
 
 .endorsement-card {
@@ -866,12 +831,13 @@ textarea {
 }
 
 @media (max-width: 980px) {
-  .campaign-gate-shell {
-    grid-template-columns: 1fr;
+  :root {
+    --section-space: 48px;
+    --section-gap: 22px;
   }
 
-  .section {
-    padding: 64px 0;
+  .campaign-gate-shell {
+    grid-template-columns: 1fr;
   }
 
   .hero,
@@ -906,6 +872,11 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --section-space: 40px;
+    --section-gap: 20px;
+  }
+
   .campaign-gate {
     padding: 20px 10px;
   }
@@ -972,10 +943,6 @@ textarea {
   .section,
   .site-footer {
     width: min(var(--max-width), calc(100% - 20px));
-  }
-
-  .section {
-    padding: 52px 0;
   }
 
   .topbar {
@@ -1051,17 +1018,15 @@ textarea {
     margin-right: auto;
   }
 
-  .hero .signup-bar,
-  .hero .hero-actions,
-  .hero #newsletter-feedback {
+  .hero .hero-actions {
     display: none;
   }
 
   .mobile-hero-cta {
     display: grid;
-    gap: 22px;
+    gap: var(--section-gap);
     width: min(var(--max-width), calc(100% - 20px));
-    margin: 8px auto 0;
+    margin: 0 auto;
   }
 
   .mobile-hero-actions {
@@ -1081,31 +1046,8 @@ textarea {
     padding: 0 18px;
   }
 
-  .mobile-hero-cta .signup-bar {
-    grid-template-columns: 1fr;
-    margin-top: 0;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .mobile-hero-cta .signup-bar input + input {
-    border-left: 0;
-    border-top: 1px solid rgba(21, 36, 51, 0.12);
-  }
-
-  .button,
-  .signup-bar button {
+  .button {
     width: 100%;
-  }
-
-  .mobile-hero-cta .signup-bar input,
-  .mobile-hero-cta .signup-bar button {
-    min-height: 52px;
-  }
-
-  .mobile-hero-cta .signup-bar button {
-    font-size: 1.05rem;
-    letter-spacing: 0.03em;
   }
 
   .portrait-frame,
@@ -1142,7 +1084,7 @@ textarea {
   }
 
   .section-heading {
-    margin-bottom: 22px;
+    margin-bottom: var(--section-gap);
   }
 
   .section-heading h2 {
@@ -1161,14 +1103,7 @@ textarea {
   }
 
   .why-me-promise {
-    margin-top: 30px;
-  }
-
-  .mobile-form-note {
-    min-height: 18px;
-    margin-top: -4px;
-    text-align: center;
-    color: var(--ink-700);
+    margin-top: var(--section-gap);
   }
 
   .contact-form {

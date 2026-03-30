@@ -78,47 +78,6 @@ const postForm = async (payload) => {
   return result;
 };
 
-document.querySelectorAll("[data-newsletter-form]").forEach((newsletterForm) => {
-  const newsletterFeedback = newsletterForm.nextElementSibling;
-  if (!newsletterFeedback) return;
-
-  newsletterForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(newsletterForm);
-    const email = String(formData.get("email") || "").trim();
-    const zip = String(formData.get("zip") || "").trim();
-
-    if (!email) {
-      newsletterFeedback.textContent = "Enter an email address first.";
-      return;
-    }
-
-    const submitButton = newsletterForm.querySelector('button[type="submit"]');
-    if (submitButton instanceof HTMLButtonElement) {
-      submitButton.disabled = true;
-    }
-    newsletterFeedback.textContent = "Sending...";
-
-    try {
-      await postForm({
-        formType: "newsletter",
-        email,
-        zip
-      });
-      newsletterForm.reset();
-      newsletterFeedback.textContent = "Thanks. Your signup was sent to the campaign.";
-    } catch (error) {
-      newsletterFeedback.textContent =
-        error instanceof Error ? error.message : "Unable to send form right now.";
-    } finally {
-      if (submitButton instanceof HTMLButtonElement) {
-        submitButton.disabled = false;
-      }
-    }
-  });
-});
-
 const contactForm = document.querySelector("#contact-form");
 const contactFeedback = document.querySelector("#contact-feedback");
 

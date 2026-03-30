@@ -75,7 +75,6 @@ Set these environment variables in Vercel before testing:
 
 After deploying:
 
-- Newsletter signups submit to `/api/forms` and email the campaign inbox
 - Contact form messages submit to `/api/forms` and email the campaign inbox
 - The sender's email is used as `reply_to` so replies can go directly back to the person who filled out the form
 
