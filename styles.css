@@ -349,14 +349,6 @@ textarea {
   text-transform: uppercase;
 }
 
-.nav-donate {
-  padding: 13px 24px;
-  border-radius: 4px;
-  background: var(--gold-500);
-  color: var(--ink-900);
-  font-weight: 700;
-}
-
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
@@ -453,8 +445,7 @@ textarea {
   font-size: 0.92em;
 }
 
-.hero-actions,
-.donate-actions {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -480,7 +471,6 @@ textarea {
 
 .button:hover,
 .signup-bar button:hover,
-.nav-donate:hover,
 .nav-links a:hover {
   transform: translateY(-1px);
 }
@@ -499,12 +489,6 @@ textarea {
   border-color: rgba(21, 36, 51, 0.2);
   color: var(--ink-900);
   background: rgba(255, 255, 255, 0.45);
-}
-
-.button-outline-light {
-  border-color: rgba(255, 255, 255, 0.28);
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .hero-portrait {
@@ -600,7 +584,6 @@ textarea {
 }
 
 .split-grid,
-.video-shell,
 .contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
@@ -694,8 +677,7 @@ textarea {
 .info-card,
 .endorsement-card,
 .contact-form,
-.contact-panel,
-.video-placeholder {
+.contact-panel {
   padding: 28px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.88);
@@ -714,8 +696,7 @@ textarea {
 .info-card p,
 .section p,
 .endorsement-card blockquote,
-.contact-panel li,
-.video-placeholder p {
+.contact-panel li {
   font-size: 1.06rem;
   line-height: 1.65;
   color: var(--ink-700);
@@ -766,37 +747,6 @@ textarea {
   margin-top: 22px;
 }
 
-.video-placeholder {
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  background:
-    linear-gradient(135deg, rgba(19, 57, 84, 0.92), rgba(15, 48, 73, 0.96)),
-    radial-gradient(circle at center, rgba(224, 180, 89, 0.35), transparent 36%);
-  color: var(--white);
-}
-
-.video-embed {
-  box-shadow: var(--shadow);
-}
-
-.video-placeholder-empty {
-  min-height: 360px;
-  background:
-    linear-gradient(135deg, rgba(19, 57, 84, 0.92), rgba(15, 48, 73, 0.96)),
-    radial-gradient(circle at center, rgba(224, 180, 89, 0.2), transparent 36%);
-}
-
-.video-placeholder strong {
-  display: block;
-  margin-bottom: 10px;
-  font-family: "Oswald", Impact, sans-serif;
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 .endorsement-card {
   display: flex;
   flex-direction: column;
@@ -828,33 +778,6 @@ textarea {
   font-size: 1.15rem;
   letter-spacing: 0.04em;
   color: var(--navy-950);
-}
-
-.donate-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 36px;
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, rgba(13, 44, 69, 0.97), rgba(23, 60, 89, 0.95)),
-    radial-gradient(circle at top right, rgba(224, 180, 89, 0.14), transparent 28%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: var(--shadow);
-  color: var(--white);
-}
-
-.donate-strip h2 {
-  color: var(--white);
-}
-
-.donate-strip .eyebrow {
-  color: var(--gold-200);
-}
-
-.donate-strip .fill-note {
-  color: rgba(255, 255, 255, 0.74);
 }
 
 .faq-list {
@@ -953,7 +876,6 @@ textarea {
 
   .hero,
   .split-grid,
-  .video-shell,
   .contact-grid,
   .cards.three-up,
   .endorsement-grid,
@@ -980,11 +902,6 @@ textarea {
 
   .portrait-frame {
     min-height: 420px;
-  }
-
-  .donate-strip {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
 
@@ -1105,11 +1022,6 @@ textarea {
     display: flex;
   }
 
-  .nav-donate {
-    width: 100%;
-    text-align: center;
-  }
-
   .hero {
     gap: 24px;
     padding-top: 28px;
@@ -1152,8 +1064,7 @@ textarea {
     margin: 8px auto 0;
   }
 
-  .mobile-hero-actions,
-  .donate-actions {
+  .mobile-hero-actions {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1215,10 +1126,8 @@ textarea {
   .endorsement-card,
   .contact-form,
   .contact-panel,
-  .video-placeholder,
   .faq-list details,
-  .endorsement-feature,
-  .donate-strip {
+  .endorsement-feature {
     padding: 20px 16px;
   }
 
@@ -1260,11 +1169,6 @@ textarea {
     margin-top: -4px;
     text-align: center;
     color: var(--ink-700);
-  }
-
-  .donate-strip {
-    align-items: center;
-    text-align: center;
   }
 
   .contact-form {

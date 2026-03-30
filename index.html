@@ -107,8 +107,7 @@
         <a href="#qualifications">Qualifications</a>
         <a href="#why-me">Why Me</a>
         <a href="#endorsements">Endorsements</a>
-        <a href="#contact">Volunteer</a>
-        <a class="nav-donate" href="#donate">Contribute</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
 
@@ -122,7 +121,8 @@
           citizens, and serve with fairness and accountability.
         </p>
 
-        <form class="signup-bar" id="newsletter-form" data-newsletter-form novalidate>
+        <form class="signup-bar" id="newsletter-form" data-newsletter-form data-form-kind="newsletter" novalidate>
+          <input type="hidden" name="formType" value="newsletter" />
           <label class="sr-only" for="newsletter-email">Email address</label>
           <input
             id="newsletter-email"
@@ -147,9 +147,7 @@
         <p class="form-note" id="newsletter-feedback" data-newsletter-feedback aria-live="polite"></p>
 
         <div class="hero-actions">
-          <a class="button button-gold" href="#contact">Volunteer</a>
-          <a class="button button-outline" href="#donate">Donate</a>
-          <a class="button button-outline" href="#video">Watch Video</a>
+          <a class="button button-gold" href="#contact">Contact</a>
         </div>
       </div>
 
@@ -189,12 +187,11 @@
 
     <section class="mobile-hero-cta" aria-label="Mobile Campaign Actions">
       <div class="mobile-hero-actions">
-        <a class="button button-gold" href="#contact">Volunteer</a>
-        <a class="button button-outline-dark" href="#donate">Donate</a>
-        <a class="button button-outline-dark" href="#video">Watch Video</a>
+        <a class="button button-gold" href="#contact">Contact</a>
       </div>
 
       <form class="signup-bar" data-newsletter-form novalidate>
+        <input type="hidden" name="formType" value="newsletter" />
         <label class="sr-only" for="newsletter-email-mobile">Email address</label>
         <input
           id="newsletter-email-mobile"
@@ -323,20 +320,6 @@
       </div>
     </section>
 
-    <section class="section video-section" id="video">
-      <div class="section-heading">
-        <p class="eyebrow">Campaign Video</p>
-        <h2>Video space reserved for the campaign.</h2>
-      </div>
-      <div class="video-shell">
-        <div class="video-placeholder video-placeholder-empty" aria-hidden="true"></div>
-        <div class="info-card">
-          <h3>Video area</h3>
-          <p class="fill-note">(Team: embed the main campaign video here when it is ready.)</p>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="endorsements">
       <div class="section-heading">
         <p class="eyebrow">Endorsements</p>
@@ -362,37 +345,6 @@
           </blockquote>
           <p>Klamath Falls Police Beneficiary</p>
         </article>
-        <article class="endorsement-card">
-          <div class="logo-placeholder">Attorney</div>
-          <blockquote>
-            <span class="fill-note">(Team: add a lawyer endorsement here focused on preparation, courtroom professionalism, and judgment.)</span>
-          </blockquote>
-          <p><span class="fill-note-inline">(Team: add attorney name)</span></p>
-        </article>
-        <article class="endorsement-card">
-          <div class="logo-placeholder">Community</div>
-          <blockquote>
-            <span class="fill-note">(Team: add one local community endorsement here so the section does not feel limited to legal insiders.)</span>
-          </blockquote>
-          <p><span class="fill-note-inline">(Team: add community endorser name)</span></p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section donate-strip" id="donate">
-      <div>
-        <p class="eyebrow">Contribute</p>
-        <h2>Support Cole Chase for Judge.</h2>
-        <p class="fill-note">(Team: the Donate button should open the live online donation page. Online donations will be processed through Stripe.)</p>
-        <p class="fill-note">(Team: the Campaign Finance button should link to contribution rules, disclosures, committee details, or the official finance reporting page.)</p>
-      </div>
-      <div class="donate-actions">
-        <a class="button button-gold" href="#" data-placeholder-link="donate">
-          Donate
-        </a>
-        <a class="button button-outline-light" href="#" data-placeholder-link="finance">
-          Campaign Finance
-        </a>
       </div>
     </section>
 
@@ -462,11 +414,11 @@
 
     <section class="section contact-section" id="contact">
       <div class="section-heading">
-        <p class="eyebrow">Volunteer + Contact</p>
-        <h2>Collect supporters, volunteers, and direct questions in one place.</h2>
+        <p class="eyebrow">Contact</p>
+        <h2>Share questions, support, and direct messages with the campaign.</h2>
       </div>
       <div class="contact-grid">
-        <form class="contact-form" id="volunteer-form" novalidate>
+        <form class="contact-form" id="contact-form" data-form-kind="contact" novalidate>
           <label>
             Full name
             <input type="text" name="name" autocomplete="name" required />
@@ -480,9 +432,8 @@
             <input type="tel" name="phone" autocomplete="tel" />
           </label>
           <label>
-            How can you help?
+            What is this about?
             <select name="interest">
-              <option value="Volunteer">Volunteer</option>
               <option value="Host a sign">Host a sign</option>
               <option value="Request endorsement">Request endorsement</option>
               <option value="General contact">General contact</option>
@@ -490,17 +441,16 @@
           </label>
           <label>
             Message
-            <textarea name="message" rows="5" placeholder="Tell the campaign how you’d like to help."></textarea>
+            <textarea name="message" rows="5" placeholder="Tell the campaign what you’d like to share."></textarea>
           </label>
           <button class="button button-gold submit-button" type="submit">Send Message</button>
-          <p class="form-note" id="volunteer-feedback" aria-live="polite"></p>
+          <p class="form-note" id="contact-feedback" aria-live="polite"></p>
         </form>
 
         <aside class="contact-panel">
           <h3>Campaign actions</h3>
           <ul>
             <li><a href="https://www.facebook.com/p/Cole-Chase-For-Judge-61583466609396/" target="_blank" rel="noopener">@ColeChaseForJudge</a></li>
-            <li><a href="#" data-placeholder-link="instagram"><span class="fill-note-inline">(Team: add Instagram URL if used)</span></a></li>
             <li><a href="mailto:cole.p.chase@gmail.com">cole.p.chase@gmail.com</a></li>
             <li><a href="tel:15412816987">(541) 281-6987</a></li>
           </ul>

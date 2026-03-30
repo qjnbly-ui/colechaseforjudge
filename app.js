@@ -55,16 +55,34 @@ if (navToggle && navLinks) {
   });
 }
 
-const buildMailtoLink = ({ subject, lines }) => {
-  const body = encodeURIComponent(lines.join("\n"));
-  return `mailto:cole.p.chase@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+const postForm = async (payload) => {
+  const response = await fetch("/api/forms", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  let result = null;
+  try {
+    result = await response.json();
+  } catch (_error) {
+    result = null;
+  }
+
+  if (!response.ok) {
+    throw new Error(result?.error || "Unable to send form right now.");
+  }
+
+  return result;
 };
 
 document.querySelectorAll("[data-newsletter-form]").forEach((newsletterForm) => {
   const newsletterFeedback = newsletterForm.nextElementSibling;
   if (!newsletterFeedback) return;
 
-  newsletterForm.addEventListener("submit", (event) => {
+  newsletterForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(newsletterForm);
@@ -76,24 +94,39 @@ document.querySelectorAll("[data-newsletter-form]").forEach((newsletterForm) => 
       return;
     }
 
-    localStorage.setItem(
-      "cole-chase-newsletter",
-      JSON.stringify({ email, zip, updatedAt: new Date().toISOString() })
-    );
+    const submitButton = newsletterForm.querySelector('button[type="submit"]');
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = true;
+    }
+    newsletterFeedback.textContent = "Sending...";
 
-    newsletterFeedback.textContent =
-      "Signup saved on this device. Replace this with the real campaign signup service when ready.";
+    try {
+      await postForm({
+        formType: "newsletter",
+        email,
+        zip
+      });
+      newsletterForm.reset();
+      newsletterFeedback.textContent = "Thanks. Your signup was sent to the campaign.";
+    } catch (error) {
+      newsletterFeedback.textContent =
+        error instanceof Error ? error.message : "Unable to send form right now.";
+    } finally {
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = false;
+      }
+    }
   });
 });
 
-const volunteerForm = document.querySelector("#volunteer-form");
-const volunteerFeedback = document.querySelector("#volunteer-feedback");
+const contactForm = document.querySelector("#contact-form");
+const contactFeedback = document.querySelector("#contact-feedback");
 
-if (volunteerForm && volunteerFeedback) {
-  volunteerForm.addEventListener("submit", (event) => {
+if (contactForm && contactFeedback) {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(volunteerForm);
+    const formData = new FormData(contactForm);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
@@ -101,37 +134,34 @@ if (volunteerForm && volunteerFeedback) {
     const message = String(formData.get("message") || "").trim();
 
     if (!name || !email) {
-      volunteerFeedback.textContent = "Name and email are required.";
+      contactFeedback.textContent = "Name and email are required.";
       return;
     }
 
-    localStorage.setItem(
-      "cole-chase-volunteer",
-      JSON.stringify({ name, email, phone, interest, message, updatedAt: new Date().toISOString() })
-    );
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = true;
+    }
+    contactFeedback.textContent = "Sending...";
 
-    volunteerFeedback.textContent =
-      "Contact saved on this device. Your mail app will open so this can be sent to the campaign inbox.";
-
-    window.location.href = buildMailtoLink({
-      subject: `Campaign contact: ${interest || "Volunteer"}`,
-      lines: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone || "Not provided"}`,
-        `Interest: ${interest || "Not provided"}`,
-        "",
-        "Message:",
-        message || "No message provided."
-      ]
-    });
+    try {
+      await postForm({
+        formType: "contact",
+        name,
+        email,
+        phone,
+        interest,
+        message
+      });
+      contactForm.reset();
+      contactFeedback.textContent = "Thanks. Your message was sent to the campaign.";
+    } catch (error) {
+      contactFeedback.textContent =
+        error instanceof Error ? error.message : "Unable to send form right now.";
+    } finally {
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = false;
+      }
+    }
   });
 }
-
-document.querySelectorAll("[data-placeholder-link]").forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-    const label = link.getAttribute("data-placeholder-link") || "link";
-    window.alert(`Replace the ${label} placeholder link before publishing this site.`);
-  });
-});
