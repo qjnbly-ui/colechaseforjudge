@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://colechaseforjudge.com/sitemap.xml
+Sitemap: https://www.colechaseforjudge.com/sitemap.xml
