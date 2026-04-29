@@ -812,6 +812,24 @@ textarea {
   color: var(--navy-950);
 }
 
+.site-footer-credit {
+  margin-top: 16px;
+  font-family: "Work Sans", "Source Sans 3", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--ink-700);
+}
+
+.site-footer-credit a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer-credit a:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 980px) {
   :root {
     --section-space: 48px;
